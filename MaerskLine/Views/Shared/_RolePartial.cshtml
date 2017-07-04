@@ -1,0 +1,18 @@
+﻿@if (Request.IsAuthenticated)
+{
+    if (ViewBag.Role.Contains("Admin"))
+    {
+        //<li>@Html.ActionLink("Admin", "Index", "Staff")</li>
+        <li>@Html.ActionLink("Ship", "Index", "Ships")</li>
+        <li>@Html.ActionLink("Booking", "Index", "Books")</li>
+        <li>@Html.ActionLink("Warehouse", "Index", "Warehouses")</li>
+    }
+
+    if (ViewBag.Role.Contains("Staff"))
+    {
+        <li>@Html.ActionLink("Manage Customer", "Index", "Customers")</li>
+        <li>@Html.ActionLink("Make Booking", "ViewSchedule", "Ships")</li>
+        <li>@Html.ActionLink("Cargo", "Index", "Cargoes")</li>
+    }
+}
+

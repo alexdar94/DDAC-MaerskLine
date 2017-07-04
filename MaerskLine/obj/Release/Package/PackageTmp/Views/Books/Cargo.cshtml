@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MaerskLine.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Cargo</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BookID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cargo.CargoName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ship.ShipName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Warehouse.WarehouseName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer)
+            </td>
+            <td>
+                @Html.ActionLink(item.Cargo.CargoName, "Details2", "Cargoes", new { id = item.Cargo.CargoID }, null)
+            </td>
+            <td>
+                @Html.ActionLink(item.Ship.ShipName, "Details2", "Ships", new { id = item.Ship.ShipID }, null)
+            </td>
+            <td>
+                @Html.ActionLink(item.Warehouse.WarehouseName, "Details2", "Warehouses", new { id = item.Warehouse.WarehouseID }, null)
+            </td>
+
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MaerskLineModelStoreContainer" CdmEntityContainer="MaerskLineEntities4">
+    <EntitySetMapping Name="Books">
+      <EntityTypeMapping TypeName="MaerskLineModel.Book">
+        <MappingFragment StoreEntitySet="Book">
+          <ScalarProperty Name="BookID" ColumnName="BookID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="CargoID" ColumnName="CargoID" />
+          <ScalarProperty Name="ShipID" ColumnName="ShipID" />
+          <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cargoes">
+      <EntityTypeMapping TypeName="MaerskLineModel.Cargo">
+        <MappingFragment StoreEntitySet="Cargo">
+          <ScalarProperty Name="CargoID" ColumnName="CargoID" />
+          <ScalarProperty Name="CargoName" ColumnName="CargoName" />
+          <ScalarProperty Name="CargoLength" ColumnName="CargoLength" />
+          <ScalarProperty Name="CargoWidth" ColumnName="CargoWidth" />
+          <ScalarProperty Name="CargoHeight" ColumnName="CargoHeight" />
+          <ScalarProperty Name="CargoWeight" ColumnName="CargoWeight" />
+          <ScalarProperty Name="CargoStatus" ColumnName="CargoStatus" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="MaerskLineModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MLUserRoles">
+      <EntityTypeMapping TypeName="MaerskLineModel.MLUserRole">
+        <MappingFragment StoreEntitySet="MLUserRole">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ships">
+      <EntityTypeMapping TypeName="MaerskLineModel.Ship">
+        <MappingFragment StoreEntitySet="Ship">
+          <ScalarProperty Name="ShipID" ColumnName="ShipID" />
+          <ScalarProperty Name="ShipDate" ColumnName="ShipDate" />
+          <ScalarProperty Name="ShipName" ColumnName="ShipName" />
+          <ScalarProperty Name="ShipAddress" ColumnName="ShipAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Warehouses">
+      <EntityTypeMapping TypeName="MaerskLineModel.Warehouse">
+        <MappingFragment StoreEntitySet="Warehouse">
+          <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+          <ScalarProperty Name="WarehouseName" ColumnName="WarehouseName" />
+          <ScalarProperty Name="WarehouseAddress" ColumnName="WarehouseAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MaerskLineModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="BookID" />
+          </Key>
+          <Property Name="BookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="CargoID" Type="int" Nullable="false" />
+          <Property Name="ShipID" Type="int" Nullable="false" />
+          <Property Name="WarehouseID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cargo">
+          <Key>
+            <PropertyRef Name="CargoID" />
+          </Key>
+          <Property Name="CargoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CargoName" Type="nchar" MaxLength="255" />
+          <Property Name="CargoLength" Type="float" />
+          <Property Name="CargoWidth" Type="float" />
+          <Property Name="CargoHeight" Type="float" />
+          <Property Name="CargoWeight" Type="float" />
+          <Property Name="CargoStatus" Type="nchar" MaxLength="255" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="255" />
+          <Property Name="Contact" Type="nchar" MaxLength="255" />
+          <Property Name="Address" Type="nchar" MaxLength="255" />
+          <Property Name="Email" Type="nchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="MLUserRole">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="nchar" MaxLength="255" Nullable="false" />
+          <Property Name="Role" Type="nchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ship">
+          <Key>
+            <PropertyRef Name="ShipID" />
+          </Key>
+          <Property Name="ShipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShipDate" Type="datetime" />
+          <Property Name="ShipName" Type="nchar" MaxLength="255" />
+          <Property Name="ShipAddress" Type="nchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="WarehouseID" />
+          </Key>
+          <Property Name="WarehouseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WarehouseName" Type="nchar" MaxLength="255" />
+          <Property Name="WarehouseAddress" Type="nchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK__Book__CargoID__04E4BC85">
+          <End Role="Cargo" Type="Self.Cargo" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cargo">
+              <PropertyRef Name="CargoID" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="CargoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Book__CustomerID__05D8E0BE">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Book__ShipID__02FC7413">
+          <End Role="Ship" Type="Self.Ship" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ship">
+              <PropertyRef Name="ShipID" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="ShipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Book__WarehouseI__03F0984C">
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="WarehouseID" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="WarehouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cargo__CustomerI__5CD6CB2B">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Cargo" Type="Self.Cargo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Cargo">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MaerskLineModelStoreContainer">
+          <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cargo" EntityType="Self.Cargo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MLUserRole" EntityType="Self.MLUserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ship" EntityType="Self.Ship" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Book__CargoID__04E4BC85" Association="Self.FK__Book__CargoID__04E4BC85">
+            <End Role="Cargo" EntitySet="Cargo" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Book__CustomerID__05D8E0BE" Association="Self.FK__Book__CustomerID__05D8E0BE">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Book__ShipID__02FC7413" Association="Self.FK__Book__ShipID__02FC7413">
+            <End Role="Ship" EntitySet="Ship" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Book__WarehouseI__03F0984C" Association="Self.FK__Book__WarehouseI__03F0984C">
+            <End Role="Warehouse" EntitySet="Warehouse" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cargo__CustomerI__5CD6CB2B" Association="Self.FK__Cargo__CustomerI__5CD6CB2B">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Cargo" EntitySet="Cargo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MaerskLineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="BookID" />
+          </Key>
+          <Property Name="BookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="CargoID" Type="Int32" Nullable="false" />
+          <Property Name="ShipID" Type="Int32" Nullable="false" />
+          <Property Name="WarehouseID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cargo" Relationship="Self.FK__Book__CargoID__04E4BC85" FromRole="Book" ToRole="Cargo" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__Book__CustomerID__05D8E0BE" FromRole="Book" ToRole="Customer" />
+          <NavigationProperty Name="Ship" Relationship="Self.FK__Book__ShipID__02FC7413" FromRole="Book" ToRole="Ship" />
+          <NavigationProperty Name="Warehouse" Relationship="Self.FK__Book__WarehouseI__03F0984C" FromRole="Book" ToRole="Warehouse" />
+        </EntityType>
+        <EntityType Name="Cargo">
+          <Key>
+            <PropertyRef Name="CargoID" />
+          </Key>
+          <Property Name="CargoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CargoName" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <Property Name="CargoLength" Type="Double" />
+          <Property Name="CargoWidth" Type="Double" />
+          <Property Name="CargoHeight" Type="Double" />
+          <Property Name="CargoWeight" Type="Double" />
+          <Property Name="CargoStatus" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Book__CargoID__04E4BC85" FromRole="Cargo" ToRole="Book" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__Cargo__CustomerI__5CD6CB2B" FromRole="Cargo" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <Property Name="Contact" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Book__CustomerID__05D8E0BE" FromRole="Customer" ToRole="Book" />
+          <NavigationProperty Name="Cargoes" Relationship="Self.FK__Cargo__CustomerI__5CD6CB2B" FromRole="Customer" ToRole="Cargo" />
+        </EntityType>
+        <EntityType Name="MLUserRole">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="255" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ship">
+          <Key>
+            <PropertyRef Name="ShipID" />
+          </Key>
+          <Property Name="ShipID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShipDate" Type="DateTime" Precision="3" />
+          <Property Name="ShipName" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <Property Name="ShipAddress" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Book__ShipID__02FC7413" FromRole="Ship" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="WarehouseID" />
+          </Key>
+          <Property Name="WarehouseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WarehouseName" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <Property Name="WarehouseAddress" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Book__WarehouseI__03F0984C" FromRole="Warehouse" ToRole="Book" />
+        </EntityType>
+        <Association Name="FK__Book__CargoID__04E4BC85">
+          <End Role="Cargo" Type="Self.Cargo" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cargo">
+              <PropertyRef Name="CargoID" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="CargoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Book__CustomerID__05D8E0BE">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Book__ShipID__02FC7413">
+          <End Role="Ship" Type="Self.Ship" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ship">
+              <PropertyRef Name="ShipID" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="ShipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Book__WarehouseI__03F0984C">
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="WarehouseID" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="WarehouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cargo__CustomerI__5CD6CB2B">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Cargo" Type="Self.Cargo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Cargo">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MaerskLineEntities4" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Books" EntityType="Self.Book" />
+          <EntitySet Name="Cargoes" EntityType="Self.Cargo" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="MLUserRoles" EntityType="Self.MLUserRole" />
+          <EntitySet Name="Ships" EntityType="Self.Ship" />
+          <EntitySet Name="Warehouses" EntityType="Self.Warehouse" />
+          <AssociationSet Name="FK__Book__CargoID__04E4BC85" Association="Self.FK__Book__CargoID__04E4BC85">
+            <End Role="Cargo" EntitySet="Cargoes" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Book__CustomerID__05D8E0BE" Association="Self.FK__Book__CustomerID__05D8E0BE">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Book__ShipID__02FC7413" Association="Self.FK__Book__ShipID__02FC7413">
+            <End Role="Ship" EntitySet="Ships" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Book__WarehouseI__03F0984C" Association="Self.FK__Book__WarehouseI__03F0984C">
+            <End Role="Warehouse" EntitySet="Warehouses" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cargo__CustomerI__5CD6CB2B" Association="Self.FK__Cargo__CustomerI__5CD6CB2B">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Cargo" EntitySet="Cargoes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MaerskLineModelStoreContainer" CdmEntityContainer="MaerskLineEntities4">
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="MaerskLineModel.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CargoID" ColumnName="CargoID" />
+                <ScalarProperty Name="ShipID" ColumnName="ShipID" />
+                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cargoes">
+            <EntityTypeMapping TypeName="MaerskLineModel.Cargo">
+              <MappingFragment StoreEntitySet="Cargo">
+                <ScalarProperty Name="CargoID" ColumnName="CargoID" />
+                <ScalarProperty Name="CargoName" ColumnName="CargoName" />
+                <ScalarProperty Name="CargoLength" ColumnName="CargoLength" />
+                <ScalarProperty Name="CargoWidth" ColumnName="CargoWidth" />
+                <ScalarProperty Name="CargoHeight" ColumnName="CargoHeight" />
+                <ScalarProperty Name="CargoWeight" ColumnName="CargoWeight" />
+                <ScalarProperty Name="CargoStatus" ColumnName="CargoStatus" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="MaerskLineModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MLUserRoles">
+            <EntityTypeMapping TypeName="MaerskLineModel.MLUserRole">
+              <MappingFragment StoreEntitySet="MLUserRole">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ships">
+            <EntityTypeMapping TypeName="MaerskLineModel.Ship">
+              <MappingFragment StoreEntitySet="Ship">
+                <ScalarProperty Name="ShipID" ColumnName="ShipID" />
+                <ScalarProperty Name="ShipDate" ColumnName="ShipDate" />
+                <ScalarProperty Name="ShipName" ColumnName="ShipName" />
+                <ScalarProperty Name="ShipAddress" ColumnName="ShipAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Warehouses">
+            <EntityTypeMapping TypeName="MaerskLineModel.Warehouse">
+              <MappingFragment StoreEntitySet="Warehouse">
+                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+                <ScalarProperty Name="WarehouseName" ColumnName="WarehouseName" />
+                <ScalarProperty Name="WarehouseAddress" ColumnName="WarehouseAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,31 @@
+﻿@model MaerskLine.Models.Warehouse
+
+@{
+    ViewBag.Title = "Details2";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Warehouse</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.WarehouseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WarehouseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WarehouseAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WarehouseAddress)
+        </dd>
+
+    </dl>
+</div>
+

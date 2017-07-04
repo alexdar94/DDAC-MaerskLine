@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MaerskLineModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="BookID" />
+    </Key>
+    <Property Name="BookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="CargoID" Type="int" Nullable="false" />
+    <Property Name="ShipID" Type="int" Nullable="false" />
+    <Property Name="WarehouseID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cargo">
+    <Key>
+      <PropertyRef Name="CargoID" />
+    </Key>
+    <Property Name="CargoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CargoName" Type="nchar" MaxLength="255" />
+    <Property Name="CargoLength" Type="float" />
+    <Property Name="CargoWidth" Type="float" />
+    <Property Name="CargoHeight" Type="float" />
+    <Property Name="CargoWeight" Type="float" />
+    <Property Name="CargoStatus" Type="nchar" MaxLength="255" />
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="255" />
+    <Property Name="Contact" Type="nchar" MaxLength="255" />
+    <Property Name="Address" Type="nchar" MaxLength="255" />
+    <Property Name="Email" Type="nchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="MLUserRole">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Email" Type="nchar" MaxLength="255" Nullable="false" />
+    <Property Name="Role" Type="nchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ship">
+    <Key>
+      <PropertyRef Name="ShipID" />
+    </Key>
+    <Property Name="ShipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShipDate" Type="datetime" />
+    <Property Name="ShipName" Type="nchar" MaxLength="255" />
+    <Property Name="ShipAddress" Type="nchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Warehouse">
+    <Key>
+      <PropertyRef Name="WarehouseID" />
+    </Key>
+    <Property Name="WarehouseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WarehouseName" Type="nchar" MaxLength="255" />
+    <Property Name="WarehouseAddress" Type="nchar" MaxLength="255" />
+  </EntityType>
+  <Association Name="FK__Book__CargoID__04E4BC85">
+    <End Role="Cargo" Type="Self.Cargo" Multiplicity="1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="CargoID" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="CargoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Book__CustomerID__05D8E0BE">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Book__ShipID__02FC7413">
+    <End Role="Ship" Type="Self.Ship" Multiplicity="1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ship">
+        <PropertyRef Name="ShipID" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="ShipID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Book__WarehouseI__03F0984C">
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouse">
+        <PropertyRef Name="WarehouseID" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="WarehouseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cargo__CustomerI__5CD6CB2B">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Cargo" Type="Self.Cargo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Cargo">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MaerskLineModelStoreContainer">
+    <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cargo" EntityType="Self.Cargo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MLUserRole" EntityType="Self.MLUserRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ship" EntityType="Self.Ship" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Book__CargoID__04E4BC85" Association="Self.FK__Book__CargoID__04E4BC85">
+      <End Role="Cargo" EntitySet="Cargo" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Book__CustomerID__05D8E0BE" Association="Self.FK__Book__CustomerID__05D8E0BE">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Book__ShipID__02FC7413" Association="Self.FK__Book__ShipID__02FC7413">
+      <End Role="Ship" EntitySet="Ship" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Book__WarehouseI__03F0984C" Association="Self.FK__Book__WarehouseI__03F0984C">
+      <End Role="Warehouse" EntitySet="Warehouse" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cargo__CustomerI__5CD6CB2B" Association="Self.FK__Cargo__CustomerI__5CD6CB2B">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Cargo" EntitySet="Cargo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

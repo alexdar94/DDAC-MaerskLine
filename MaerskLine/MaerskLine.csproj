@@ -26,6 +26,8 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <WebProject_DirectoryAccessLevelKey>1</WebProject_DirectoryAccessLevelKey>
+    <ApplicationInsightsResourceId>/subscriptions/2968a652-9d8e-4263-9885-c654bdbfbde6/resourcegroups/MaerskLine_RG_SA/providers/microsoft.insights/components/MaerskLine</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/2968a652-9d8e-4263-9885-c654bdbfbde6/resourcegroups/MaerskLine_RG_SA/providers/microsoft.insights/components/MaerskLine</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -231,6 +233,7 @@
     <Compile Include="Controllers\ShipsController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Controllers\WarehousesController.cs" />
+    <Compile Include="ErrorHandler\AiHandleErrorAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -309,7 +312,8 @@
     <Content Include="Models\MLModels.edmx.diagram">
       <DependentUpon>MLModels.edmx</DependentUpon>
     </Content>
-    <None Include="Properties\PublishProfiles\maerskline-ddac - Web Deploy.pubxml" />
+    <Content Include="Connected Services\Application Insights\ConnectedService.json" />
+    <None Include="Properties\PublishProfiles\maersklineddac - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

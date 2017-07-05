@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9fc2128034b14a6e9a9ec0077fe22a9c" Name="Diagram1">
-        <EntityTypeShape EntityType="MaerskLineModel.Book" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MaerskLineModel.Cargo" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MaerskLineModel.Customer" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MaerskLineModel.MLUserRole" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MaerskLineModel.Ship" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="MaerskLineModel.Warehouse" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+      <Diagram DiagramId="9fc2128034b14a6e9a9ec0077fe22a9c" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="MaerskLineModel.Book" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaerskLineModel.Cargo" Width="1.5" PointX="3.125" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaerskLineModel.Customer" Width="1.5" PointX="3.125" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaerskLineModel.MLUserRole" Width="1.5" PointX="7.375" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaerskLineModel.Ship" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaerskLineModel.Warehouse" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
         <AssociationConnector Association="MaerskLineModel.FK__Book__CargoID__04E4BC85" ManuallyRouted="false" />
         <AssociationConnector Association="MaerskLineModel.FK__Book__CustomerID__05D8E0BE" ManuallyRouted="false" />
         <AssociationConnector Association="MaerskLineModel.FK__Book__ShipID__02FC7413" ManuallyRouted="false" />

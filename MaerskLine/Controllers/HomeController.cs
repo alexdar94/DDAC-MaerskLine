@@ -31,6 +31,7 @@ namespace MaerskLine.Controllers
 
         public ActionResult SetRole()
         {
+            //asdads
             ViewBag.Role = db.MLUserRoles.Find(User.Identity.Name).Role;
             return PartialView("_RolePartial");
         }
